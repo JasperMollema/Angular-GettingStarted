@@ -14,7 +14,7 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <h4>Filtered by: {{listFilter}} </h4>
+        <h4>Filtered by: get </h4>
       </div>
     </div>
   </div>
@@ -34,10 +34,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let product of products">
+    <tr *ngFor="let product of filteredProducts">
       <td><img *ngIf="showImage" [src]="product.imageUrl" [title]="product.productName" [style.width.px]="imageWidth" [style.marging.px]="imageMargin"></td>
       <td>{{product.productName}}</td>
-      <td>{{product.productCode | lowercase}}</td>
+      <td>{{product.productCode | lowercase | convertToSpaces: '-'}}</td>
       <td>{{product.releaseDate}}</td>
       <td>{{product.price | currency: 'EUR' : 'symbol' : '1.2-2'}}</td>
       <td>{{product.starRating}}</td>
