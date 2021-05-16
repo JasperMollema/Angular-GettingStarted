@@ -10,7 +10,9 @@ export class ProductDetailComponent implements OnInit {
   pageTitle = 'Product Detail';
   product: Product | undefined;
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router) {
+    console.log(this.route.snapshot.paramMap.get('id'));
+  }
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));

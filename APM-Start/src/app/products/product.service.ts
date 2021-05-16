@@ -9,15 +9,19 @@ import {catchError, tap} from 'rxjs/operators';
 })
 export class ProductService {
   private productUrl = 'api/products/products.json'; // Actual url from web service if you have one.
+  private products: Observable<Product[]> = new Observable<Product[]>();
 
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.productUrl)
+    this.products = this.http.get<Product[]>(this.productUrl)
       .pipe(
         tap(data => console.log('All', JSON.stringify(data))),
         catchError(err => this.handleError(err))
     );
+    console.log('Products retrieved: ');
+    console.log(this.products);
+    return this.products;
   }
 
   private handleError(errorResponse: HttpErrorResponse): Observable<never>{
